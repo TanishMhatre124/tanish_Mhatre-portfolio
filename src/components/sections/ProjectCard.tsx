@@ -5,7 +5,15 @@ import type { Project } from "@/types";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
-export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
+export function ProjectCard({
+  project,
+  index = 0,
+}: {
+  project: Project;
+  index?: number;
+}) {
+  const visibleTechStack = project.techStack.slice(0, 4);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -37,26 +45,44 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
               {project.title}
             </h3>
           </Link>
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-fog">{project.description}</p>
+
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-fog">
+            {project.description}
+          </p>
 
           <div className="mt-4 flex flex-wrap gap-1.5">
-            {project.techStack.slice(0, 4).map((tech) => (
+            {visibleTechStack.map((tech, techIndex) => (
               <span key={tech} className="font-mono text-[11px] text-fog">
                 {tech}
-                {tech !== project.techStack.slice(0, 4).at(-1) && <span className="ml-1.5 text-line">/</span>}
+                {techIndex < visibleTechStack.length - 1 && (
+                  <span className="ml-1.5 text-line">/</span>
+                )}
               </span>
             ))}
           </div>
 
           <div className="mt-auto border-t border-line pt-4">
             <div className="flex items-center gap-4 text-xs uppercase tracking-wider text-signal">
-              <Link to={`/projects/${project.slug}`} className="transition-colors hover:text-paper">
+              <Link
+                to={`/projects/${project.slug}`}
+                className="transition-colors hover:text-paper"
+              >
                 View Details
               </Link>
+
               <span className="text-line">)</span>
+
               {project.sourceUrl ? (
-                <a href={project.sourceUrl} target="_blank" rel="noreferrer noopener" className="group/link flex items-center gap-1.5 transition-colors hover:text-paper">
-                  <Github size={14} className="text-signal transition-transform duration-200 group-hover/link:-translate-y-0.5" />
+                <a
+                  href={project.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="group/link flex items-center gap-1.5 transition-colors hover:text-paper"
+                >
+                  <Github
+                    size={14}
+                    className="text-signal transition-transform duration-200 group-hover/link:-translate-y-0.5"
+                  />
                   GitHub
                 </a>
               ) : (
@@ -65,10 +91,20 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
                   GitHub
                 </span>
               )}
+
               <span className="text-line">|</span>
+
               {project.demoUrl ? (
-                <a href={project.demoUrl} target="_blank" rel="noreferrer noopener" className="group/link flex items-center gap-1.5 transition-colors hover:text-paper">
-                  <ArrowUpRight size={14} className="text-signal transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="group/link flex items-center gap-1.5 transition-colors hover:text-paper"
+                >
+                  <ArrowUpRight
+                    size={14}
+                    className="text-signal transition-transform duration-200 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                  />
                   Live Demo
                 </a>
               ) : (
