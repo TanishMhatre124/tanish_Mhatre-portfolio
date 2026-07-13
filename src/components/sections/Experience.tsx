@@ -5,6 +5,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 
 export function Experience() {
+  const highlightedSkills = ["Python", "SQL", "Power BI", "Dashboard Development", "Automation", "Data Visualization"];
+
   return (
     <section id="experience" className="border-t border-line py-24 sm:py-32">
       <div className="container max-w-content">
@@ -48,7 +50,12 @@ export function Experience() {
 
               <div className="flex flex-wrap gap-2">
                 {role.technologies.map((tech) => (
-                  <Badge key={tech}>{tech}</Badge>
+                  <Badge 
+                    key={tech}
+                    className={highlightedSkills.includes(tech) ? "border-signal bg-signal/10 text-signal" : ""}
+                  >
+                    {tech}
+                  </Badge>
                 ))}
               </div>
             </motion.li>

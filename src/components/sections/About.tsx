@@ -35,6 +35,17 @@ export function About() {
                 </div>
               ))}
             </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-line bg-background px-5 py-4">
+                <p className="font-semibold text-paper">Study Duration</p>
+                <p className="mt-2 text-sm text-fog">August 2022 – June 2026</p>
+              </div>
+              <div className="rounded-2xl border border-line bg-background px-5 py-4">
+                <p className="font-semibold text-paper">Graduation</p>
+                <p className="mt-2 text-sm text-fog">Graduated: June 2026</p>
+              </div>
+            </div>
           </div>
 
           <div className="relative">

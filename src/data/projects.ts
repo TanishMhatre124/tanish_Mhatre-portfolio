@@ -12,8 +12,8 @@ export const projects: Project[] = [
     tagline: "AI and machine learning analysis for smarter fund decisions.",
     description:
       "A mutual fund analysis project that uses AI and machine learning to compare fund performance, surface patterns, and support data-driven investment decisions.",
-    image: "/images/proj1.jpeg",
-    gallery: ["/images/proj1.jpeg"],
+    image: "/images/mutualfunds.png",
+    gallery: ["/images/mutualfunds.png"],
     categories: ["AI", "Machine Learning", "Research"],
     techStack: ["Python", "Machine Learning", "Data Analysis", "Streamlit", "Pandas"],
     highlights: [
