@@ -3,6 +3,7 @@ import { ArrowRight, FileDown, CircleDot, Github, Linkedin, Instagram } from "lu
 import { personalInfo } from "@/data/personalInfo";
 import { socialLinks } from "@/data/socialLinks";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { Badge } from "@/components/ui/Badge";
 
 const iconMap = { github: Github, linkedin: Linkedin, instagram: Instagram };
 
@@ -15,30 +16,32 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 inline-flex items-center gap-2 rounded-sm border border-line px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-signal"
+            className="mb-6"
           >
-            <CircleDot size={12} className="animate-blink" />
-            {personalInfo.availability}
+            <Badge className="inline-flex items-center gap-2 px-3 py-1.5 text-xs uppercase tracking-wider font-mono">
+              <CircleDot size={12} className="animate-blink" />
+              {personalInfo.availability}
+            </Badge>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-1"
+            className="space-y-2"
           >
             <p className="font-mono text-xs uppercase tracking-wider text-fog">Hello, I&apos;m</p>
             <p className="font-display text-3xl font-semibold leading-tight text-paper sm:text-4xl">
               Tanish Mhatre
             </p>
-            <p className="text-sm uppercase tracking-wider text-signal">Data Analytics &amp; AI Engineer</p>
+            <p className="text-sm uppercase tracking-wider text-signal">data and ai engineer</p>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-4xl font-semibold leading-[1.1] text-paper sm:text-5xl lg:text-6xl"
+            className="font-display text-xl font-semibold leading-[1.2] text-paper sm:text-2xl lg:text-2xl mt-4"
           >
             {personalInfo.headline}
           </motion.h1>
@@ -47,7 +50,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-fog"
+            className="mt-6 max-w-xl text-lg sm:text-xl leading-7 text-paper"
           >
             {personalInfo.bio}
           </motion.p>

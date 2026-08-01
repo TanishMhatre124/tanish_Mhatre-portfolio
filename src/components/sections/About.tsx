@@ -18,34 +18,67 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              className="text-lg leading-relaxed text-fog"
+              className="text-base sm:text-lg leading-8 text-paper"
             >
-              {personalInfo.bio}
+              {
+                (() => {
+                  const full = personalInfo.bio;
+                  const tech = "Python, SQL, scikit-learn, TensorFlow, and Power BI";
+                  if (full.includes(tech)) {
+                    const [before, after] = full.split(tech);
+                    return (
+                      <>
+                        {before}
+                        <span className="text-signal font-semibold">{tech}</span>
+                        {after}
+                      </>
+                    );
+                  }
+                  return full;
+                })()
+              }
             </motion.p>
 
-            <div className="grid grid-cols-2 gap-4 pt-2 sm:grid-cols-4">
-              {[
-                { label: "Shipped projects", value: "4+" },
-                { label: "CGPA", value: "8.79" },
-                { label: "Publications", value: "1" },
-              ].map((stat) => (
-                <div key={stat.label} className="border-l border-line pl-4">
-                  <p className="font-mono text-2xl font-medium text-paper">{stat.value}</p>
-                  <p className="mt-1 text-xs text-fog">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mt-8 rounded-2xl border px-4 py-4 bg-gradient-to-r from-background/80 via-panel/75 to-background/80 shadow-[0_6px_20px_rgba(2,6,23,0.45)]"
+              style={{ borderColor: "rgba(255,255,255,0.06)" }}
+            >
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 items-center">
+                {[
+                  { label: "Featured projects", value: "4+" },
+                  { label: "CGPA", value: "8.79" },
+                  { label: "Publications", value: "1" },
+                ].map((stat, i) => {
+                  const isHighlight = ["Featured projects", "Publications", "CGPA"].includes(stat.label);
+                  return (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, y: 6 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: i * 0.06 }}
+                      className="flex flex-col items-start sm:items-center gap-1"
+                    >
+                      <div className="rounded-md p-2 w-full text-left sm:text-center">
+                        <p
+                          className={`font-mono text-2xl font-bold ${isHighlight ? "text-signal" : "text-paper"}`}
+                          style={{ textShadow: isHighlight ? "0 2px 8px rgba(249,115,22,0.06)" : "0 1px 6px rgba(0,0,0,0.04)" }}
+                        >
+                          {stat.value}
+                        </p>
+                        <p className={`mt-0 text-xs ${isHighlight ? "text-signal/90 font-semibold" : "text-fog"}`}>{stat.label}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-line bg-background px-5 py-4">
-                <p className="font-semibold text-paper">Study Duration</p>
-                <p className="mt-2 text-sm text-fog">August 2022 – June 2026</p>
-              </div>
-              <div className="rounded-2xl border border-line bg-background px-5 py-4">
-                <p className="font-semibold text-paper">Graduation</p>
-                <p className="mt-2 text-sm text-fog">Graduated: June 2026</p>
-              </div>
-            </div>
+            
           </div>
 
           <div className="relative">

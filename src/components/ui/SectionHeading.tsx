@@ -17,7 +17,9 @@ export function SectionHeading({ index, eyebrow, title, description, align = "le
         <span className="h-px w-8 bg-line" />
         <span>{eyebrow}</span>
       </div>
-      <h2 className="font-display text-3xl font-semibold text-paper sm:text-4xl">{title}</h2>
+      {title ? (
+        <h2 className="font-display text-3xl font-semibold text-paper sm:text-4xl">{title}</h2>
+      ) : null}
       {description && <p className={cn("mt-4 max-w-2xl text-fog", align === "center" && "mx-auto")}>{description}</p>}
     </div>
   );

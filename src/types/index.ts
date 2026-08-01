@@ -51,7 +51,8 @@ export interface ExperienceEntry {
   id: string;
   role: string;
   company: string;
-  companyLogo: string;
+  companyLogo?: string;
+  logo?: string;
   date: string;
   location: string;
   achievements: string[];

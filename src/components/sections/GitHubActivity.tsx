@@ -91,11 +91,15 @@ export function GitHubActivity() {
                   href={(repo as Repo).html_url}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="block"
+                  className="block group"
                 >
                   <Card className="h-full p-5 hover:border-signal/40">
                     <div className="mb-2 flex items-center justify-between">
-                      <h3 className="font-mono text-sm font-medium text-paper">{(repo as Repo).name}</h3>
+                      <h3 className="font-mono text-sm text-paper">
+                        <span className="text-signal font-semibold transition-all duration-150 group-hover:underline group-hover:underline-offset-2 group-hover:decoration-signal/60 group-hover:drop-shadow-[0_6px_18px_rgba(249,115,22,0.06)]">
+                          {(repo as Repo).name}
+                        </span>
+                      </h3>
                       <ExternalLink size={14} className="text-fog" />
                     </div>
                     <p className="mb-4 line-clamp-2 min-h-[2.5rem] text-xs text-fog">

@@ -77,7 +77,7 @@ export const projects: Project[] = [
     image: "/images/proj3.jpeg",
     gallery: ["/images/proj3.jpeg"],
     categories: ["Machine Learning", "Python", "Data Science", "Research"],
-    techStack: ["Python", "IoT", "Machine Learning", "Decision Trees", "SVM", "Random Forest", "Naive Bayes"],
+    techStack: ["Python", "IoT", "Machine Learning", "Decision Trees", "SVM"],
     highlights: [
       "93% accuracy in crop prediction across four ML models",
       "Real-time soil monitoring via integrated IoT sensors",

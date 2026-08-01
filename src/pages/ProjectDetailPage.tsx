@@ -162,11 +162,11 @@ export function ProjectDetailPage() {
           <aside className="lg:sticky lg:top-24 lg:h-fit">
             <Card className="p-6">
               <p className="mb-4 font-mono text-xs uppercase tracking-wider text-fog">Tech stack</p>
-              <div className="mb-6 flex flex-wrap gap-2">
-                {project.techStack.map((t) => (
-                  <Badge key={t}>{t}</Badge>
-                ))}
-              </div>
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {project.techStack.map((t) => (
+                    <Badge key={t} className="shadow-sm">{t}</Badge>
+                  ))}
+                </div>
               <p className="mb-4 font-mono text-xs uppercase tracking-wider text-fog">Highlights</p>
               <ul className="space-y-3">
                 {project.highlights.map((h) => (

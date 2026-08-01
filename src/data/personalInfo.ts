@@ -4,9 +4,9 @@ export const personalInfo: PersonalInfo = {
   name: "Tanish Mhatre",
   initials: "TM",
   role: "Data Analytics & AI Engineer",
-  headline: "I turn information into insight, and insight into systems that ship.",
+  headline: "I clean data, build pipelines, and train models that hold up outside a notebook.",
 
-  bio: "I work at the intersection of data analytics, machine learning, and artificial intelligence — building systems that hold up outside a notebook. My focus is practical: pipelines that run unattended, models that earn their accuracy, and dashboards people actually open on a Monday morning.",
+  bio: "I work across data analytics and machine learning, focused on the parts of the job that actually make a system reliable — structuring raw data, building pipelines that don't break, and training models that generalize instead of just fitting well in testing. My work spans data pipeline automation, predictive modeling, and financial analysis tools, built primarily with Python, SQL, scikit-learn, TensorFlow, and Power BI. I care about the full path from raw data to something people can actually trust and use.",
 
   philosophy:
     "I believe technology should solve real-world problems through clean engineering, data-driven decisions, and continuous learning.",

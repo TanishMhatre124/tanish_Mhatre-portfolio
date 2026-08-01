@@ -7,8 +7,8 @@ export const education: EducationEntry[] = [
     logo: "/images/UM.svg",
     degree: "B.Tech in Computer Science (Data Science) Engineering",
     specialization: "Data Science",
-    studyDuration: "Aug 2022 - Present",
-    expectedGraduation: "Jun 2026",
+    studyDuration: "Aug 2022 - April 2026",
+    expectedGraduation: "Graduated 2026",
     cgpa: "8.79 / 10",
     coursework: [
       "Data Structures & Algorithms",

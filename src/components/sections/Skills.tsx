@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { skillGroups } from "@/data/skills";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/utils/cn";
+import { Badge } from "@/components/ui/Badge";
 
 type SkillFilter = "All" | (typeof skillGroups)[number]["category"];
 
@@ -58,19 +59,16 @@ export function Skills() {
                 whileHover={{ y: -3 }}
                 className="rounded-2xl border border-line/80 bg-panel/80 p-6 backdrop-blur-sm"
               >
-                <div className="mb-5 flex items-start justify-between gap-4">
+                <div className="mb-5">
                   <div>
                     <h3 className="font-display text-lg font-semibold text-paper">{group.category}</h3>
                     {group.description && <p className="mt-2 text-sm leading-relaxed text-fog">{group.description}</p>}
                   </div>
-                  <span className="rounded-full border border-line bg-background px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-fog">
-                    {group.skills.length}
-                  </span>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill, index) => (
-                    <motion.span
+                    <motion.div
                       key={skill.name}
                       layout
                       initial={{ opacity: 0, scale: 0.96 }}
@@ -78,10 +76,10 @@ export function Skills() {
                       exit={{ opacity: 0, scale: 0.96 }}
                       transition={{ duration: 0.2, delay: index * 0.015, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -1 }}
-                      className="inline-flex rounded-full border border-line bg-background px-3.5 py-1.5 text-sm font-medium text-paper transition-colors hover:border-signal/40 hover:bg-signal/5"
+                      className="inline-flex"
                     >
-                      {skill.name}
-                    </motion.span>
+                      <Badge className="transition-colors hover:border-signal/40 hover:bg-signal/5">{skill.name}</Badge>
+                    </motion.div>
                   ))}
                 </div>
               </motion.article>

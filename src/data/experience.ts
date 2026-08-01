@@ -6,6 +6,7 @@ export const experience: ExperienceEntry[] = [
     role: "Tech Associate Intern",
     company: "Apni Pathshala",
     companyLogo: "/images/apni_pathshala_logo.png",
+    logo: "/images/apnipathshalaimg1.jfif",
     date: "Dec 2025 — Mar 2026",
     location: "Mumbai, Maharashtra",
     achievements: [

@@ -12,10 +12,12 @@ export function ProjectCard({
   project: Project;
   index?: number;
 }) {
-  const visibleTechStack = project.techStack.slice(0, 4);
+  // show full tech stack and apply consistent pill styling
+  const visibleTechStack = project.techStack;
 
   return (
     <motion.div
+      className="flex flex-col h-full"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -46,22 +48,25 @@ export function ProjectCard({
             </h3>
           </Link>
 
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-fog">
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-fog">
             {project.description}
           </p>
 
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            {visibleTechStack.map((tech, techIndex) => (
-              <span key={tech} className="font-mono text-[11px] text-fog">
-                {tech}
-                {techIndex < visibleTechStack.length - 1 && (
-                  <span className="ml-1.5 text-line">/</span>
-                )}
-              </span>
-            ))}
-          </div>
+          <div className="mt-auto">
+            <div className="mt-4 flex flex-wrap gap-2 items-center min-h-[48px]">
+              {visibleTechStack.map((tech) => (
+                <Badge
+                  key={tech}
+                  className="shadow-sm transition-transform duration-150 hover:scale-105"
+                >
+                  {tech}
+                </Badge>
+              ))}
+            </div>
 
-          <div className="mt-auto border-t border-line pt-4">
+            <div className="my-5" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }} />
+
+            <div className="pt-4">
             <div className="flex items-center gap-4 text-xs uppercase tracking-wider text-signal">
               <Link
                 to={`/projects/${project.slug}`}
@@ -69,8 +74,6 @@ export function ProjectCard({
               >
                 View Details
               </Link>
-
-              <span className="text-line">)</span>
 
               {project.sourceUrl ? (
                 <a
@@ -116,6 +119,7 @@ export function ProjectCard({
             </div>
           </div>
         </div>
+      </div>
       </Card>
     </motion.div>
   );
