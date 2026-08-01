@@ -9,7 +9,7 @@ export function About() {
   return (
     <section id="about" className="border-t border-line py-24 sm:py-32">
       <div className="container max-w-content">
-        <SectionHeading index="01" eyebrow="About" title="Grounded in real-world application" />
+        <SectionHeading index="01" eyebrow="About" title="" />
 
         <div className="grid gap-12">
           <div className="space-y-6 max-w-3xl">
