@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/Card";
 
 export function About() {
   return (
-    <section id="about" className="border-t border-line py-24 sm:py-32">
+    <section id="about" className="border-t border-line py-12 sm:py-16">
       <div className="container max-w-content">
         <SectionHeading index="01" eyebrow="About" title="" />
 
