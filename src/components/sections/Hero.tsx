@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { ArrowRight, FileDown, CircleDot, Github, Linkedin, Instagram } from "lucide-react";
 import { personalInfo } from "@/data/personalInfo";
 import { socialLinks } from "@/data/socialLinks";
@@ -8,6 +9,17 @@ import { Badge } from "@/components/ui/Badge";
 const iconMap = { github: Github, linkedin: Linkedin, instagram: Instagram };
 
 export function Hero() {
+  const [showResume, setShowResume] = useState(false);
+
+  useEffect(() => {
+    if (!showResume) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setShowResume(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showResume]);
+
   return (
     <section id="home" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="container grid max-w-content gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -67,10 +79,72 @@ export function Hero() {
             <LinkButton href="/projects" variant="secondary">
               View projects
             </LinkButton>
-            <LinkButton href={personalInfo.resumeUrl} variant="ghost" external>
+            <LinkButton
+              href={personalInfo.resumeUrl}
+              variant="ghost"
+              external
+              onClick={async (e) => {
+                e.preventDefault();
+                const url = personalInfo.resumeUrl;
+                setShowResume(true);
+
+                // Try fetching the file and triggering a blob download (more reliable on mobile)
+                try {
+                  const res = await fetch(url, { cache: "no-store" });
+                  if (!res.ok) throw new Error("Network response was not ok");
+                  const blob = await res.blob();
+                  const fileName = (url.split("/").pop() || "resume.pdf").split("?")[0];
+                  const blobUrl = URL.createObjectURL(blob);
+
+                  // For most browsers, this will trigger a download. On some mobile browsers (iOS Safari)
+                  // the download attribute is ignored — opening the blob URL will show the PDF in the built-in viewer.
+                  const a = document.createElement("a");
+                  a.href = blobUrl;
+                  a.download = fileName;
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+
+                  // Revoke the object URL after a short delay
+                  setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+                } catch (err) {
+                  // Fallback: open the URL directly (may open viewer instead of download)
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.target = "_blank";
+                  a.rel = "noreferrer noopener";
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                }
+              }}
+            >
               <FileDown size={16} /> Resume
             </LinkButton>
           </motion.div>
+
+          {/* Resume preview modal */}
+          {showResume && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center"
+              onClick={() => setShowResume(false)}
+            >
+              <div className="absolute inset-0 bg-black/60" />
+              <div
+                className="relative z-10 w-[90%] max-w-4xl h-[80vh] rounded-md bg-panel overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  aria-label="Close preview"
+                  onClick={() => setShowResume(false)}
+                  className="absolute top-3 right-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-md bg-background/60 text-paper hover:bg-background"
+                >
+                  ✕
+                </button>
+                <iframe src={personalInfo.resumeUrl} title="Resume Preview" className="h-full w-full" />
+              </div>
+            </div>
+          )}
 
           <motion.div
             initial={{ opacity: 0 }}
