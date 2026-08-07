@@ -68,68 +68,105 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "fitfarm",
-    slug: "fitfarm-smart-agriculture-system",
-    title: "FitFarm — Smart Agriculture System",
-    tagline: "IoT sensing and ML crop prediction for smallholder farms.",
-    description:
-      "An IoT-and-ML system that reads live soil conditions and recommends optimal crops, published as peer-reviewed research and piloted directly with rural farming communities.",
-    image: "/images/proj3.jpeg",
-    gallery: ["/images/proj3.jpeg"],
-    categories: ["Machine Learning", "Python", "Data Science", "Research"],
-    techStack: ["Python", "IoT", "Machine Learning", "Decision Trees", "SVM"],
-    highlights: [
-      "93% accuracy in crop prediction across four ML models",
-      "Real-time soil monitoring via integrated IoT sensors",
-      "Findings published in IJRASET, a peer-reviewed journal",
-    ],
-    demoUrl: null,
-    sourceUrl: null,
-    featured: true,
-    overview:
-      "FitFarm pairs low-cost IoT soil sensors with a machine learning pipeline that recommends the best crop for a given plot, aimed at farmers with no technical background and limited access to agronomists.",
-    problem:
-      "Smallholder farmers often lack access to timely, accurate information about soil conditions, leading to crop choices based on habit rather than data — and to avoidable losses in yield.",
-    solution:
-      "I built a pipeline combining Decision Trees, SVMs, Random Forests, and Naive Bayes classifiers, benchmarked against each other to select the strongest performer for crop recommendation. IoT sensors feed live pH, moisture, nutrient, and temperature readings into the pipeline continuously, so recommendations reflect current field conditions rather than static assumptions.",
-    architecture:
-      "IoT sensor nodes deployed in the field capture soil pH, moisture, nutrient composition, and temperature at regular intervals and transmit readings to a central pipeline. The ML layer ingests this stream, runs it through the trained classification models, and surfaces a crop recommendation without requiring the farmer to interpret raw sensor data.",
-    workflow: [
-      "IoT sensors capture live soil pH, moisture, nutrients, and temperature",
-      "Readings are transmitted to the prediction pipeline",
-      "Trained classifiers evaluate conditions against historical crop-yield data",
-      "The system surfaces a recommended crop in plain terms",
-    ],
-    features: [
-      "Continuous, automated soil monitoring — no manual testing required",
-      "Model benchmarking across four classifier families for best accuracy",
-      "Designed for use without any technical expertise",
-    ],
-    challenges: [
-      {
-        heading: "Choosing the right model for noisy, real-world sensor data",
-        body: "Field sensor data is noisier than lab data. Benchmarking Decision Trees, SVMs, Random Forests, and Naive Bayes against each other — rather than committing to one algorithm upfront — was what got the pipeline to 93% accuracy.",
-      },
-      {
-        heading: "Making the output usable for non-technical farmers",
-        body: "A model output is only useful if someone can act on it. The interface deliberately surfaces a single recommended crop rather than raw probabilities or sensor values.",
-      },
-    ],
-    results: [
-      "93% crop-prediction accuracy across benchmarked models",
-      "Deployed and piloted directly in rural farming communities",
-      "Measurable yield improvement through better-informed crop selection",
-      "Methodology published in the International Journal for Research in Applied Science & Engineering Technology (IJRASET)",
-    ],
-    lessonsLearned: [
-      "Field-deployed ML needs to be validated against real sensor noise, not just clean training data.",
-      "The best model is the one whose output the end user will actually trust and act on.",
-    ],
-    futureImprovements: [
-      "Extend sensor coverage to more soil and micro-climate variables",
-      "Add a lightweight mobile app for farmers to view recommendations offline",
-    ],
-  },
+  id: "customer-churn-prediction-and-segmentation",
+  slug: "customer-churn-prediction-and-segmentation",
+  title: "Customer Churn Prediction & Segmentation",
+  tagline:
+    "An AI-powered customer intelligence platform for churn prediction, RFM segmentation, and interactive business analytics.",
+  description:
+    "An end-to-end customer intelligence platform that transforms raw e-commerce transaction data into actionable business insights through customer segmentation, predictive machine learning models, and an interactive analytics dashboard.",
+
+  image:"/images/customer_plat.png",
+  gallery: ["/images/customer_plat.png"],
+
+  categories: [
+    "Data Science",
+    "Machine Learning",
+  ],
+
+  techStack: [
+    "Python",
+    "Pandas",
+    "NumPy",
+    "Scikit-learn",
+    "Plotly",
+    "Streamlit",
+  ],
+
+  highlights: [
+    "Consolidated 8 relational datasets (~100,000 orders) into a customer-level analytical dataset",
+    "Built a leakage-free retention model evaluated on real future customer behavior",
+    "Developed an interactive Streamlit dashboard for customer intelligence and business decision-making",
+  ],
+
+  demoUrl: "https://customers-intelligence-platform.streamlit.app/",
+  sourceUrl:
+    "https://github.com/TanishMhatre124/customer-churn-prediction-and-segmentation",
+
+  featured: true,
+
+  overview:
+    "This project analyzes e-commerce customer behavior using data science and machine learning techniques to segment customers, predict churn, and present business insights through an interactive dashboard. The platform transforms complex transactional data into a customer-centric analytical view that supports smarter retention strategies.",
+
+  problem:
+    "Businesses generate large volumes of transactional data across multiple relational tables, making it difficult to understand customer behavior at an individual level. Without customer segmentation and churn prediction, marketing and retention efforts often become reactive, inefficient, and expensive.",
+
+  solution:
+    "Built an end-to-end customer intelligence pipeline that cleans and integrates raw transactional data, creates customer-level features using RFM analysis, trains machine learning models to predict churn risk, and delivers actionable insights through an interactive Streamlit dashboard.",
+
+  architecture:
+    "The platform consists of a data processing layer built with Python and Pandas for cleaning and consolidating raw datasets, a feature engineering layer for customer-level analytics, a machine learning layer using Scikit-learn for churn prediction, and a Streamlit dashboard with Plotly visualizations for business users.",
+
+  workflow: [
+    "Load and clean raw order, customer, payment, review, and product datasets",
+    "Aggregate transactional data into a customer-level analytical dataset",
+    "Generate RFM scores and customer segments",
+    "Train and evaluate churn and repeat-purchase prediction models",
+    "Visualize KPIs, customer segments, and churn risk through interactive dashboards",
+    "Enable business users to filter and export high-risk customer lists",
+  ],
+
+  features: [
+    "Customer segmentation using RFM analysis",
+    "Churn prediction with Logistic Regression, Decision Tree, and Random Forest models",
+    "Leakage-free retention model for repeat purchase prediction",
+    "Interactive Streamlit dashboard with KPIs and business visualizations",
+    "Segment filtering and downloadable customer lists",
+    "Plotly-powered interactive charts and analytics",
+  ],
+
+  challenges: [
+    {
+      heading: "Transforming fragmented transactional data into customer intelligence",
+      body: "The source data was distributed across eight relational datasets with different granularities. Building a reliable customer-level analytical dataset required extensive cleaning, joining, validation, and feature engineering before any modeling could begin.",
+    },
+    {
+      heading: "Eliminating data leakage in churn prediction",
+      body: "An early churn model produced unrealistically high accuracy because the target variable leaked future information into the training process. The prediction objective was redesigned around future repeat purchases within 90 days, producing a realistic and trustworthy evaluation.",
+    },
+  ],
+
+  results: [
+    "Built a complete customer intelligence pipeline from raw transactional data",
+    "Created a leakage-free retention model achieving approximately 0.60 ROC-AUC on future customer behavior",
+    "Generated exportable high-risk customer lists for targeted retention campaigns",
+    "Delivered an interactive dashboard replacing manual analysis across multiple relational datasets",
+  ],
+
+  lessonsLearned: [
+    "Data preparation and feature engineering have a greater impact on model quality than algorithm selection alone.",
+    "Identifying and eliminating data leakage is essential for building trustworthy machine learning systems.",
+    "Business value comes from presenting analytical insights in a way that non-technical stakeholders can easily understand and act upon.",
+  ],
+
+  futureImprovements: [
+    "Add Customer Lifetime Value (CLV) prediction",
+    "Implement cohort and retention analysis",
+    "Integrate marketing campaign recommendations",
+    "Automate ETL and scheduled model retraining",
+    "Deploy the platform using cloud-based production workflows",
+  ],
+},
   {
     id: "zinzraa",
     slug: "zinzraa-ecommerce-platform",

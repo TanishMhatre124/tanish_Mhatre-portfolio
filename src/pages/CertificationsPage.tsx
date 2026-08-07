@@ -3,6 +3,7 @@ import { Search, Award, ExternalLink } from "lucide-react";
 import { certifications } from "@/data/certifications";
 import { Card } from "@/components/ui/Card";
 import { cn } from "@/utils/cn";
+import { CertificationImage } from "@/components/sections/CertificationImage";
 
 export function CertificationsPage() {
   const [query, setQuery] = useState("");
@@ -59,12 +60,15 @@ export function CertificationsPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((cert) => (
               <Card key={cert.id} className="flex flex-col p-6">
-                <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-sm border border-line text-signal">
+                <CertificationImage image={cert.image} title={cert.title} />
+                <span className="mt-4 mb-4 flex h-9 w-9 items-center justify-center rounded-sm border border-line text-signal">
                   <Award size={16} />
                 </span>
                 <h3 className="mb-1 font-display text-sm font-semibold leading-snug text-paper">{cert.title}</h3>
                 <p className="mb-1 text-xs text-fog">{cert.issuer}</p>
-                <p className="mb-4 font-mono text-[11px] text-fog">Issued {cert.issuedDate}</p>
+                {cert.issuedDate && cert.issuedDate !== "Pending verification" && (
+                  <p className="mb-4 font-mono text-[11px] text-fog">Issued {cert.issuedDate}</p>
+                )}
                 {cert.verifyUrl ? (
                   <a
                     href={cert.verifyUrl}

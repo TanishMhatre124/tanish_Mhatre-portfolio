@@ -3,22 +3,28 @@ import { certifications } from "@/data/certifications";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { Card } from "@/components/ui/Card";
+import { CertificationImage } from "@/components/sections/CertificationImage";
 
 export function CertificationsPreview() {
+  const featuredCertifications = certifications.slice(0, 3);
+
   return (
     <section id="certifications" className="border-t border-line py-24 sm:py-32">
       <div className="container max-w-content">
         <SectionHeading index="06" eyebrow="Credentials" title="Certifications" />
 
-        <div className="grid gap-5 sm:grid-cols-3">
-          {certifications.map((cert) => (
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredCertifications.map((cert) => (
             <Card key={cert.id} className="flex flex-col p-6">
-              <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-sm border border-line text-signal">
+              <CertificationImage image={cert.image} title={cert.title} />
+              <span className="mt-4 mb-4 flex h-9 w-9 items-center justify-center rounded-sm border border-line text-signal">
                 <Award size={16} />
               </span>
               <h3 className="mb-1 font-display text-sm font-semibold leading-snug text-paper">{cert.title}</h3>
               <p className="mb-3 text-xs text-fog">{cert.issuer}</p>
-              <p className="mb-4 font-mono text-[11px] text-fog">{cert.issuedDate}</p>
+              {cert.issuedDate && cert.issuedDate !== "Pending verification" && (
+                <p className="mb-4 font-mono text-[11px] text-fog">{cert.issuedDate}</p>
+              )}
               {cert.verifyUrl && (
                 <a
                   href={cert.verifyUrl}
